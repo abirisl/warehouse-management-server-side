@@ -52,18 +52,13 @@ async function run() {
             res.send(service)
         });
 
-        app.get('/myitems', verifyJwt, async (req, res) => {
+        app.get('/myitems', async (req, res) => {
             const decodedEmail = req.decoded.email;
             const email = req.query.email;
-            if (email === decodedEmail) {
                 const query = { email };
                 const cursor = bikeCollection.find(query);
                 const myItems = await cursor.toArray();
                 res.send(myItems);
-            }
-            else{
-                res.status(403).send({message: 'forbidden access'});
-            }
         })
 
 
