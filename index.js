@@ -53,7 +53,6 @@ async function run() {
         });
 
         app.get('/myitems', async (req, res) => {
-            const decodedEmail = req.decoded.email;
             const email = req.query.email;
                 const query = { email };
                 const cursor = bikeCollection.find(query);
